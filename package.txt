@@ -1,0 +1,20 @@
+#update for "$apt install" command
+sudo apt-get update
+
+#Fun stuff
+sudo apt install thefuck
+sudo apt install sl
+
+#useful command
+sudo apt install tree
+sudo apt install silversearcher-ag
+
+#using github
+git config --global user.email "jeff.yenchih.liao@gmail.com"
+git config --global user.name "yenchihliao"
+
+#python
+sudo apt install python-pip python3-pip
+
+#nodejs
+sudo apt install nodejs npm
