@@ -1,20 +1,46 @@
-#update for "$apt install" command
+# Update for "$apt install" command
 sudo apt-get update
 
-#Fun stuff
+# Fun stuff
 sudo apt install thefuck
 sudo apt install sl
+sudo apt install figlet
+sudo apt install cmatrix
 
-#useful command
+# useful command
 sudo apt install tree
 sudo apt install silversearcher-ag
 
-#using github
+# using github
 git config --global user.email "jeff.yenchih.liao@gmail.com"
 git config --global user.name "yenchihliao"
 
-#python
+# python
 sudo apt install python-pip python3-pip
+pip install --upgrade pip
+hash -r	#the default binary file location of apt install pip(/usr/bin) and pip install is different(/usr/local/bin) 
+pip3 install --upgrade pip
+hash -r
+	#jupyter
+	pip2 install --user jupyter
+	pip3 install --user jupyter
 
-#nodejs
+# nodejs
 sudo apt install nodejs npm
+npm intall -g n
+n latest	#or reference to https://nodejs.org/en/download/ to find a stable version
+hash -r	#same reasoning as situation of updating pip
+npm install -g npm@latest
+hash -r
+
+# go
+	##or newer version on https://golang.org/dl/ if updated
+wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
+tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+
+# Tendermint
+mkdir go
+go get github.com/tendermint/tendermint
+cd $GOPATH/src/github.com/tendermint/tendermint
+make get_tools
+make install
