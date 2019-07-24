@@ -1,7 +1,7 @@
-echo "welcome yenchih big big"
+echo "welcome  back,  $USER"
 #eval $(thefuck --alias)
 export GOPATH=$HOME/go
-PATH=$PATH:/$GOPATH/bin/
+PATH=$PATH:/user/local/go/bin:$GOPATH/bin
 ##Shell style
 ##learn from https://www.gnu.org/software/bash/manual/bashref.html#Controlling-the-Prompt
 export PS1="\[\e[36m\]\u\[\e[m\]\[\e[33m\]+\j\[\e[m\]@\[\e[32m\][\w]\[\e[m\] "
