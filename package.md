@@ -2,29 +2,51 @@
 sudo apt-get update
 
 # Fun stuff
+```
 sudo apt install thefuck
 sudo apt install sl
 sudo apt install figlet
 sudo apt install cmatrix
-
+```
 # useful command
+```
 sudo apt install tree
 sudo apt install silversearcher-ag
-
+```
 # using github
+```
 git config --global user.email "jeff.yenchih.liao@gmail.com"
 git config --global user.name "yenchihliao"
-
+```
 # python
+```
 sudo apt install python-pip python3-pip
-pip install --upgrade pip
+python2 -m pip install --upgrade --user pip
+#pip install --upgrade pip //this command will do as well
 hash -r	#the default binary file location of apt install pip(/usr/bin) and pip install is different(/usr/local/bin) 
-pip3 install --upgrade pip
+#pip install --upgrade pip
+python3 -m pip install --upgrade --user pip
+#pip3 install --upgrade pip //this command will do as well
 hash -r
-	#jupyter
+```
+## newer version of python 
+```
+	sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo apt install python[version]
+```
+update pip
+```
+	python3.x -m pip install --upgrade --user pip
+```
+Install header files for Python extensions, Otherwise, some package will not be able to be installed(e.g web3)
+```
+	sudo apt install python[version]-dev
+```
+## Jupyter
+```
 	pip2 install --user jupyter
 	pip3 install --user jupyter
-
+```
 # nodejs
 sudo apt install nodejs npm
 npm intall -g n
