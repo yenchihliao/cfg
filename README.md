@@ -1,6 +1,6 @@
 Installing packages in new computers is a painfully process.
 
-#windows WSL ubuntu 16.04 LTS
+# windows WSL ubuntu 16.04 LTS
 These are commands used for windows WSL ubuntu 16.04 LTS. Hope it helps.
 
 ## apt
