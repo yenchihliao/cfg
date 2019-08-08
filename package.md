@@ -34,6 +34,7 @@ hash -r
 ## newer version of python 
 ```
 	sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo apt update
 	sudo apt install python[version]
 ```
 update pip
