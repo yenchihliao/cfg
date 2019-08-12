@@ -1,7 +1,7 @@
-Installing packages in new computers is a painfully process.
+Installing packages in new computers is a painfully process. Hopfully my experience of installing packages on different platforms can help.
 
 # windows WSL ubuntu 16.04 LTS
-These are commands used for windows WSL ubuntu 16.04 LTS. Hope it helps.
+These are commands used for windows WSL ubuntu 16.04 LTS.
 
 ## apt
 Install apt, which is more user friendly, by apt-get.
@@ -47,9 +47,9 @@ hash -r
 
 ### newer version of python 
 ```
-	sudo add-apt-repository ppa:deadsnakes/ppa
-	sudo apt update
-	sudo apt install python[version]
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python[version]
 ```
 
 update pip
@@ -64,8 +64,8 @@ sudo apt install python[version]-dev
 
 ### Jupyter
 ```
-	pip2 install --user jupyter
-	pip3 install --user jupyter
+pip2 install --user jupyter
+pip3 install --user jupyter
 ```
 
 ## NodeJS
@@ -79,21 +79,42 @@ hash -r
 ```
 
 ## Golang and its happy friends
-* Find newer version on https://golang.org/dl/ if updated
-* Both Golang and Tendermint need to set environment variable. You can find how I set in my [.bashrc](https://github.com/yenchihliao/SettingUp/blob/master/rc/.bashrc).
 
+Find newer version on https://golang.org/dl/ if updated.
 ```
 wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
 tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+mkdir ~/go
+```       
+Golang needs environment variables to be set. Either use my [.bashrc](https://github.com/yenchihliao/settingup/blob/master/rc/.bashrc.) file or add the following line to your own .bashrc and run `source .bashrc`.
+```
+export GOPATH=$HOME/go
+PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+```
+### Glide
+
+[Glide](https://glide.sh) is a package management for Go. 
+```
+curl https://glide.sh/get | sh
 ```
 
+
 ### Tendermint
-BFT Consensus
+
+[Tendermint](https://tendermint.com/) is a BFT Consensus.
+
 ```
-mkdir go
+cd ~/go
 go get github.com/tendermint/tendermint
 cd $GOPATH/src/github.com/tendermint/tendermint
 make get_tools
+make install
+```
+
+To upgrade to newer version.
+```
+cd $GOPATH/src/github.com/tendermint/tendermint
+git pull origin master
 make install
 ```
 
@@ -106,10 +127,5 @@ Almost equals to commands used on WLS, but need some more commands when installi
 sudo apt install python[version]-dev
 sudo apt install libssl-dev
 ```
-
-
-
-
-
 
 
