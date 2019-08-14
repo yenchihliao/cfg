@@ -10,7 +10,8 @@ func main() {
 " _ __ __ _(_)_ __ | |__   _____      __",
 "| '__/ _` | | '_ \\| '_ \\ / _ \\ \\ /\\ / /",
 "| | | (_| | | | | | |_) | (_) \\ V  V / ",
-"|_|  \\__,_|_|_| |_|_.__/ \\___/ \\_/\\_/  "}
+"|_|  \\__,_|_|_| |_|_.__/ \\___/ \\_/\\_/  ",
+"           _       _                   "}
 	Len := 60
 	rainbow := []int{1, 3, 63, 2, 4, 5, 65}
 	for _, color := range rainbow{
@@ -38,8 +39,8 @@ func main() {
 		}
 	}
 	fmt.Printf("\x1b[0m%s", "\n")
-	for i:=0;i<5;i++{
-		format := fmt.Sprintf("\x1b[%dm", rainbow[i]+40)
+	for i:=0;i<6;i++{
+		format := fmt.Sprintf("\x1b[30;%dm", rainbow[i]+40)
 		format += "%s\n"
 		fmt.Printf(format, Rainbow[i])
 	}
