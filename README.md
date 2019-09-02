@@ -162,7 +162,7 @@ Note that the last `python[VERSION] -m pip install --upgrade --user pip` will ma
 
 3. Jupyter
 
-There are mnay ways to install jupyter. This is just one of them. If you only want to use jupyter with specific version of python, use the corresponding pip to install it.
+There are many ways to install jupyter. This is just one of them. If you only want to use jupyter with specific version of python, use the corresponding pip to install it.
 ```bash
 pip2 install --user jupyter
 pip3 install --user jupyter
