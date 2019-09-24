@@ -1,15 +1,15 @@
-# Ubuntu 16.04 LTS on windows WSL<a id="wsl"> </a>
+# Ubuntu 16.04 LTS on windows WSL
 These are things I installed on this OS.
-* [apt](#wsl-apt): Make sure to use this command when you first install the OS. Use it again when you haven't run it for a long while.
-* [Recommended](#wsl-cmd)
-* [Github](#wsl-gh)
-* [Python](#wsl-py)
-* [NodeJS](#wsl-njs)
-* [Golang](#wsl-go)
+* [apt](#apt): Make sure to use this command when you first install the OS. Use it again when you haven't run it for a long while.
+* [Recommended](#cmd)
+* [Github](#gh)
+* [Python](#py)
+* [NodeJS](#njs)
+* [Golang](#go)
 
 
 
-## apt<a id="wsl-apt"> </a>
+## apt<a id="apt"> </a>
 Update apt, which is more user friendly than apt-get.
 ```bash
 #update packages maintain by apt
@@ -18,7 +18,7 @@ sudo apt update
 sudo apt upgrade
 ```
 
-## Recommended commands<a id="wsl-cmd"> </a>
+## Recommended commands<a id="cmd"> </a>
 Fun and useful commands that everybody should get. ;)
 
 ---
@@ -36,7 +36,7 @@ sudo apt install tree
 sudo apt install silversearcher-ag
 ```
 
-## Github<a id="wsl-gh"> </a>
+## Github<a id="gh"> </a>
 For github users on commnad line interface, these commands may not be necessary but definitly be useful.
 
 ---
@@ -65,7 +65,7 @@ git remote set-url origin git@github.com:[USERNAME]/[REPOSITORY].git
 #just for checking
 git remote -v 
 ```
-## Python and its happy friends<a id="wsl-py"> </a>
+## Python and its happy friends<a id="py"> </a>
 
 Python2 won't be update anymore. But I will still talk about both python 2 and 3. If you just need one of them, just neglect some of my lines. Besides, if you only want to use newer version of python aside from the version provided by default `apt install` list, skip to [here](#Newer-version-of-Python).
 ```bash
@@ -78,7 +78,7 @@ sudo apt install python3
 #just checking
 python3 --version
 ```
-It's recommended to set [alias](#wsl-py-ali)
+It's recommended to set [alias](#ali)
 
 ### pip
 
@@ -110,7 +110,7 @@ hash -r
 #just checking
 pip3 --version
 ```
-It's recommended to set [alias](#wsl-py-ali), and install the [dependencies](#wsl-py-dep).
+It's recommended to set [alias](#ali), and install the [dependencies](#dep).
 
 
 ### Newer version of Python
@@ -131,13 +131,13 @@ python[VERSION] -m pip install --upgrade --user pip
 ```
 
 ### Others
-1. Dependencies<a id="wsl-py-dep"> </a>
+1. Dependencies<a id="dep"> </a>
 
 Install header files for Python extensions, Otherwise, some package will not be able to be installed by `pip install`(e.g web3)
 ```bash
 sudo apt install python[VERSION]-dev
 ```
-2. Alias<a id="wsl-py-ali"> </a>
+2. Alias<a id="ali"> </a>
 
 To use multiple version of python and pip at a time, you could make your perferable one as default by adding `alias` in your `.bashrc`.
 ```bash
@@ -154,7 +154,7 @@ pip2 install --user jupyter
 pip3 install --user jupyter
 ```
 
-## NodeJS <a id="wsl-njs"> </a>
+## NodeJS <a id="njs"> </a>
 ```bash
 sudo apt install nodejs npm
 npm intall -g n
@@ -164,7 +164,7 @@ npm install -g npm@latest
 hash -r
 ```
 
-## Golang and its happy friends<a id="wsl-go"> </a>
+## Golang and its happy friends<a id="go"> </a>
 
 Find newer version on https://golang.org/dl/ if updated.
 ```bash
@@ -172,7 +172,7 @@ wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
 mkdir ~/go
 ```       
-Golang needs environment variables to be set. Either use my [.bashrc](https://github.com/yenchihliao/settingup/blob/master/rc/.bashrc.) file or use the following commnads. 
+Golang needs environment variables to be set. Either use my [.bashrc](https://github.com/yenchihliao/OSModuleInstall/blob/master/rc/.bashrc) file or use the following commnads. 
 ```bash
 #edit ~/.bashrc
 echo "export GOPATH=$HOME/go" >> ~/.bashrc
@@ -180,7 +180,7 @@ echo "PATH=$PATH:/usr/local/go/bin:$GOPATH/bin" >> ~/.bashrc
 source ~/.bashrc
 ```
 ### Rainbow
-[Rainbow](https://github.com/yenchihliao/SettingUp/Rainbow) is wonderful.
+[Rainbow](https://github.com/yenchihliao/OSModuleInstall/tree/master/Rainbow) is wonderful.
 ```bash
 go run rainbow
 ```
@@ -217,3 +217,4 @@ cd $GOPATH/src/github.com/tendermint/tendermint
 git pull origin master
 make install
 ```
+
