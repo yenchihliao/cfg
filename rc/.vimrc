@@ -6,10 +6,27 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'nathanaelkane/vim-indent-guides' "show indent
-Plugin 'vim-airline/vim-airline' "statusLine
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive' "Git plugin
 Plugin 'preservim/nerdtree' "Tree
+"statusLine
+Plugin 'vim-airline/vim-airline' 
+Plugin 'vim-airline/vim-airline-themes'
+set encoding=utf-8 
+let g:airline_powerline_fonts = 1
+" unicode symbols
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
+
 "coloScheme
 Plugin 'morhetz/gruvbox'
 Plugin 'altercation/vim-colors-solarized' 
