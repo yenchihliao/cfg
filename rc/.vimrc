@@ -5,15 +5,17 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'nathanaelkane/vim-indent-guides' "show indent
+Plugin 'nathanaelkane/vim-indent-guides' "show indent defualt: \ig 
 Plugin 'tpope/vim-fugitive' "Git plugin
 Plugin 'preservim/nerdtree' "Tree
+Plugin 'ivalkeen/nerdtree-execute' "Execute command in NERDTree menu
+nnoremap \tr :NERDTree<CR>
+Plugin 'tpope/vim-surround' "Surround command
 "statusLine
 Plugin 'vim-airline/vim-airline' 
 Plugin 'vim-airline/vim-airline-themes'
 set encoding=utf-8 
 let g:airline_powerline_fonts = 1
-" unicode symbols
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -61,6 +63,8 @@ set listchars=eol:\\,tab:<-,space:`
 hi SpecialKey ctermfg=240 guifg=240
 hi NonText ctermfg=240 guifg=240
 
+"@yen: mappings
+inoremap jj <Esc>
 
 "@yen: warp the window or not
 set nowrap
