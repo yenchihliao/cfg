@@ -30,6 +30,7 @@ let g:mundo_auto_preview_delay = 0
 "statusLine
 Plugin 'vim-airline/vim-airline' 
 Plugin 'vim-airline/vim-airline-themes'
+scriptencoding utf-8
 set encoding=utf-8 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -68,20 +69,23 @@ filetype plugin indent on
 set autoindent
 "set smartindent isn't good enough now
 
-"@yen: new added by yen @Aug14, 2018
+"@yen:hilights
 set nu
 " hi LineNr cterm=italic ctermfg=233 ctermbg=245
-"@yen: highlight cursorline
 set cursorline
 "hi Cursorline cterm=bold ctermbg=18
 "hi CursorlineNr cterm=bold ctermfg=red ctermbg=19
+set hlsearch
 
 "@yen: change comment color @Jan10, 2019 
 hi Comment ctermfg=241 
-"@yen: https://magiclen.org/vimrc/
-"@yen: list all concealed characters
-set listchars=eol:\\,tab:<-,space:`
-"set list
+
+"@yen: https://magiclen.org/vimrc/,
+"https://www.reddit.com/r/vim/comments/4hoa6e/what_do_you_use_for_your_listchars/
+"http://www.fileformat.info/info/charset/UTF-8/list.htm
+"list all concealed characters
+set listchars=eol:↲,tab:<-,extends:»,precedes:«,trail:˴,nbsp:˴  "space:`,
+set list
 hi SpecialKey ctermfg=240 guifg=240
 hi NonText ctermfg=240 guifg=240
 
