@@ -1,4 +1,15 @@
 "@yen: Age of Pulgins @Jan23, 2020
+"Remap of Plugin optiosns should be placed within vundle according to :help startup
+"""""
+"Mappings:
+"\ig for indenet-guildes
+"\tr for nerdtree
+"\rb for rainbow-parentheses
+"\un for undo history
+"jj for <ESC>
+"oo for add newline in next line
+"""""
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,6 +22,11 @@ Plugin 'preservim/nerdtree' "Tree
 Plugin 'ivalkeen/nerdtree-execute' "Execute command in NERDTree menu
 nnoremap \tr :NERDTree<CR>
 Plugin 'tpope/vim-surround' "Surround command
+Plugin 'AutoClose'
+Plugin 'simnalamburt/vim-mundo'
+nnoremap \un :MundoToggle<CR>
+let g:mundo_auto_preview_delay = 0
+
 "statusLine
 Plugin 'vim-airline/vim-airline' 
 Plugin 'vim-airline/vim-airline-themes'
@@ -33,9 +49,15 @@ let g:airline_symbols.whitespace = 'Ξ'
 Plugin 'morhetz/gruvbox'
 Plugin 'altercation/vim-colors-solarized' 
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+nnoremap \rb :RainbowParenthesesToggle<CR>
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"store undo history
+set undofile
+set undodir=~/.vim/undo
 
 "@yen: set indents
 syntax on
@@ -65,6 +87,8 @@ hi NonText ctermfg=240 guifg=240
 
 "@yen: mappings
 inoremap jj <Esc>
+nnoremap oo o<Esc>k
+nnoremap OO O<Esc>j
 
 "@yen: warp the window or not
 set nowrap
@@ -79,3 +103,7 @@ let g:solarized_termcolors=256
 let g:gruvbox_termcolors=256
 set background=dark
 colorscheme gruvbox
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
