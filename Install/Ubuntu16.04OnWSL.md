@@ -2,7 +2,7 @@
 These are things I installed on this OS.
 * [apt](#apt): Make sure to use this command when you first install the OS. Use it again when you haven't run it for a long while.
 * [Recommended](#cmd)
-* [Github](#gh)
+* [Remote Connections](#rc)(github, ssh, sftp)
 * [Python](#py)
 * [NodeJS](#njs)
 * [Golang](#go)
@@ -36,10 +36,31 @@ sudo apt install tree
 sudo apt install silversearcher-ag
 ```
 
-## Github<a id="gh"> </a>
-For github users on commnad line interface, these commands may not be necessary but definitly be useful.
+## Remote Connections <a id="rc"> </a>
+* .ssh setup
+* Github
+* workstation
 
----
+### .ssh setup
+Generates a ssh-key for remote connections, so that password is not needed every time.  
+```bash
+# Make sure the generated key pair is in ~/.ssh directory. Create one if the directory doesn't exist.
+ssh-keygen -t rsa -b 4096 -C "[MAIL_ID]@[MAIL_SERVER]"
+```
+To connect to remote server, server ip, server port, and username is needed. We can avoid all these by writing either shell command alias or write config file in .ssh (recommended). See the template [here](https://github.com/yenchihliao/OSModuleInstall/blob/master/config/.ssh/config). (Make sure the file is at `~/.ssh/config`). For example, the command, `$ssh [server]` is equal to `$ssh -p [port] [user]@[ip]` with the following config file.
+```bash
+Host [server]
+	HostName [ip]
+	User [user]
+	IdentityFile ~/.ssh/[privatekey_file]
+	Port [port]
+```
+
+
+
+### Github
+
+For github users on commnad line interface, these commands may not be necessary but definitly be useful.
 1. git config
 
 These settings will be keep at `~/.gitconfig` and provide informations when `git commit` is called.  
@@ -48,23 +69,21 @@ Replace `--global` flag by `--local` when specific config is used on specific re
 git config --global user.email "[MAIL_ID]@[MAIL_SERVER]"
 git config --global user.name "[NAME]"
 ```
---- 
 2. ssh key
 
-Generating ssh-key for github, so that username and password are not needed every time when `git commit` is called.  
-The repository should be **cloned with ssh** to have this feature.
-```bash
-#generate ssh key into .ssh file
-ssh-keygen -t rsa -b 4096 -C "[MAIL_ID]@[MAIL_SERVER]"
-```
-After having a ssh key, you can copy the public key `id_rsa.pub` to Github [New SSH Key](https://github.com/settings/keys).  
-If the repository is not cloned with ssh, its remote url has to be changed using following commands.
+* The repository should be **cloned with ssh** instead of http to use this feature.
+* After having a ssh key locally, you need to copy the public key `id_rsa.pub` to Github [New SSH Key](https://github.com/settings/keys).  
+* If the repository is not cloned with ssh, its remote url has to be changed using following commands.
 ```bash
 #Change url from https to 
 git remote set-url origin git@github.com:[USERNAME]/[REPOSITORY].git
 #just for checking
 git remote -v 
 ```
+
+### Workstation
+Upload your public key to server and append it to `~/.ssh/authorized_keys`. Create the file/directory if it doesn't exist.
+
 ## Python and its happy friends<a id="py"> </a>
 
 Python2 won't be update anymore. But I will still talk about both python 2 and 3. If you just need one of them, just neglect some of my lines. Besides, if you only want to use newer version of python aside from the version provided by default `apt install` list, skip to [here](#Newer-version-of-Python).
@@ -172,7 +191,7 @@ wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
 mkdir ~/go
 ```       
-Golang needs environment variables to be set. Either use my [.bashrc](https://github.com/yenchihliao/OSModuleInstall/blob/master/rc/.bashrc) file or use the following commnads. 
+Golang needs environment variables to be set. Either use my [.bashrc](https://github.com/yenchihliao/OSModuleInstall/blob/master/config/ubuntu/.bashrc) file or use the following commnads. 
 ```bash
 #edit ~/.bashrc
 echo "export GOPATH=$HOME/go" >> ~/.bashrc
@@ -217,4 +236,3 @@ cd $GOPATH/src/github.com/tendermint/tendermint
 git pull origin master
 make install
 ```
-
