@@ -2,12 +2,17 @@
 "Remap of Plugin optiosns should be placed within vundle according to :help startup
 """""
 "Mappings:
-"\ig for indenet-guildes
-"\tr for nerdtree
-"\rb for rainbow-parentheses
-"\un for undo history
-"jj for <ESC>
-"oo for add newline in next line
+"	\ig for indenet-guildes
+"	\tr for nerdtree
+"	\rb for rainbow-parentheses
+"	\un for undo history
+"	jj for <ESC>
+"	oo for add newline in the next line.
+"	OO for add newline in the previous line.
+"Frequently Used:
+"	:set paste/nopaste	#Stop autoindent when pasting
+"	:set wrap/nowrap	#Wrap long lines when exceeding screen size
+"	:set list/nolist	#Show hidden characters
 """""
 
 set nocompatible              " be iMproved, required
@@ -21,11 +26,15 @@ Plugin 'tpope/vim-fugitive' "Git plugin
 Plugin 'preservim/nerdtree' "Tree
 Plugin 'ivalkeen/nerdtree-execute' "Execute command in NERDTree menu
 nnoremap \tr :NERDTree<CR>
+Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround' "Surround command
-Plugin 'AutoClose'
-Plugin 'simnalamburt/vim-mundo'
+Plugin 'AutoClose' "auto close parentheses
+Plugin 'simnalamburt/vim-mundo' " show the undo tree
 nnoremap \un :MundoToggle<CR>
 let g:mundo_auto_preview_delay = 0
+Plugin 'valloric/youcompleteme' " powerful auto complete
+Plugin 'majutsushi/tagbar' "show tags
+Plugin 'kien/ctrlp.vim' "searcher
 
 "statusLine
 Plugin 'vim-airline/vim-airline' 
@@ -41,7 +50,7 @@ let g:airline_right_sep = '◀'
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = '㏑'
 let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = '∥'
+let g:airline_symbols.paste = 'P'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_symbols.whitespace = 'Ξ'
@@ -50,7 +59,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 Plugin 'morhetz/gruvbox'
 Plugin 'altercation/vim-colors-solarized' 
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'kien/rainbow_parentheses.vim' " add color to parentheses
 nnoremap \rb :RainbowParenthesesToggle<CR>
 
 call vundle#end()            " required
@@ -86,8 +95,8 @@ hi Comment ctermfg=241
 "list all concealed characters
 set listchars=eol:↲,tab:<-,extends:»,precedes:«,trail:˴,nbsp:˴  "space:`,
 set list
-hi SpecialKey ctermfg=240 guifg=240
-hi NonText ctermfg=240 guifg=240
+"hi SpecialKey ctermfg=240 guifg=240
+"hi NonText ctermfg=240 guifg=240
 
 "@yen: mappings
 inoremap jj <Esc>
