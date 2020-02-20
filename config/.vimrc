@@ -4,8 +4,10 @@
 "Mappings:
 "	\tr for nerdtree
 "	\un for undo history
+"	\tag for tagbar
 "	\rb for rainbow-parentheses
 "	\ig for indenet-guildes
+"	c<space> for comment toggle
 "	gitgutter:
 "		\gg for gitgutter
 "		\ggf for folding
@@ -38,6 +40,7 @@ Plugin 'preservim/nerdtree' "Tree
 Plugin 'ivalkeen/nerdtree-execute' "Execute command in NERDTree menu
 nnoremap \tr :NERDTreeToggle<CR>
 Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/nerdcommenter'
 nnoremap \ggf :GitGutterFold<CR>
 nnoremap \gg :GitGutterToggle<CR>
 Plugin 'tpope/vim-surround' "Surround command
@@ -47,6 +50,7 @@ nnoremap \un :MundoToggle<CR>
 let g:mundo_auto_preview_delay = 0
 Plugin 'valloric/youcompleteme' " powerful auto complete
 Plugin 'majutsushi/tagbar' "show tags
+nnoremap \tag :TagbarToggle<CR>
 Plugin 'kien/ctrlp.vim' "searcher
 let g:ctrlp_map = '<c-f>' " replace original buffer forwad command
 let g:ctrlp_cmd = 'CtrlPMRU'
@@ -129,6 +133,7 @@ au BufNewFile,BufRead *.sol setf solidity
 
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='jellybeans'
 let g:solarized_termcolors=256
 let g:gruvbox_termcolors=256
