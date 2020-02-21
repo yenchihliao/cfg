@@ -1,0 +1,57 @@
+"@yen: Age of Pulgins @Jan23, 2020
+"Remap of Plugin optiosns should be placed within vundle according to :help startup
+"""""
+" Mappings:
+"	\fi to fold indent
+"	jj for <ESC>
+"	oo for add newline in the next line.
+"	OO for add newline in the previous line.
+"Frequently Used:
+"	:set paste/nopaste	# Stop autoindent when pasting
+"	:set wrap/nowrap	# Wrap long lines when exceeding screen size
+"	:set list/nolist	# Show hidden characters
+"	:echo &[variableName] # Show the value of [variableName]
+"""""
+
+" store undo history
+set undofile
+set undodir=~/.vim/undo
+
+" indentation
+syntax on
+set noexpandtab " stop tab from being spaces
+set tabstop=4
+set shiftwidth=4
+filetype plugin indent on
+set autoindent
+
+" HighLight
+set t_Co=256
+set nu
+set cursorline
+set hlsearch
+" change comment color
+hi Comment ctermfg=243
+hi LineNr cterm=italic ctermfg=233 ctermbg=245
+hi Cursorline cterm=bold ctermbg=240
+hi CursorlineNr cterm=bold ctermfg=red ctermbg=8
+
+" Render style
+" https://magiclen.org/vimrc/,
+" https://www.reddit.com/r/vim/comments/4hoa6e/what_do_you_use_for_your_listchars/
+" http://www.fileformat.info/info/charset/UTF-8/list.htm
+set listchars=eol:↲,tab:<-,extends:»,precedes:«,space:˴,nbsp:˴
+set list " list all concealed characters
+match ErrorMsg '\s\+$'
+set nowrap " warp the window or not
+" fold text by indentation. :help fold.txt
+nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
+
+" Mappings
+inoremap jj <Esc>
+nnoremap oo o<Esc>k
+nnoremap OO O<Esc>j
+
+" reconize solidity
+au BufNewFile,BufRead *.sol setf solidity
+
