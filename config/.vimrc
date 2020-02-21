@@ -1,13 +1,16 @@
 "@yen: Age of Pulgins @Jan23, 2020
 "Remap of Plugin optiosns should be placed within vundle according to :help startup
 """""
-"Mappings:
+" Mappings:
 "	\tr for nerdtree
 "	\un for undo history
 "	\tag for tagbar
 "	\rb for rainbow-parentheses
 "	\ig for indenet-guildes
-"	c<space> for comment toggle
+"	NerdCommenter:
+"		\cc for comment toggle
+"		\ca for append comment
+"		\cr for commenting rest fo the line
 "	gitgutter:
 "		\gg for gitgutter
 "		\ggf for folding
@@ -33,16 +36,27 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-"miscellaneous
+" miscellaneous
 Plugin 'nathanaelkane/vim-indent-guides' "show indent defualt: \ig 
 Plugin 'tpope/vim-fugitive' "Git plugin
 Plugin 'preservim/nerdtree' "Tree
 Plugin 'ivalkeen/nerdtree-execute' "Execute command in NERDTree menu
 nnoremap \tr :NERDTreeToggle<CR>
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdcommenter'
 nnoremap \ggf :GitGutterFold<CR>
 nnoremap \gg :GitGutterToggle<CR>
+Plugin 'scrooloose/nerdcommenter'
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines=1
+let g:NERDCreateDefaultMappings=0
+nnoremap \cc :call NERDComment('n', 'toggle')<CR>
+vnoremap \cc :call NERDComment('x', 'toggle')<CR>
+nnoremap \ca :call NERDComment('n', 'append')<CR>
+vnoremap \ca :call NERDComment('x', 'append')<CR>
+nnoremap \cr :call NERDComment('n', 'toEOL')<CR>
+vnoremap \cr :call NERDComment('x', 'toEOL')<CR>
+
 Plugin 'tpope/vim-surround' "Surround command
 Plugin 'AutoClose' "auto close parentheses
 Plugin 'simnalamburt/vim-mundo' " show the undo tree
@@ -55,12 +69,12 @@ Plugin 'kien/ctrlp.vim' "searcher
 let g:ctrlp_map = '<c-f>' " replace original buffer forwad command
 let g:ctrlp_cmd = 'CtrlPMRU'
 
-"filetypes
+" filetypes
 Plugin 'chrisbra/csv.vim' " csv
 Plugin 'klen/python-mode' " python
 Plugin 'nelstrom/vim-markdown-folding' "markdown
 
-"statusLine
+" statusLine
 Plugin 'vim-airline/vim-airline' 
 Plugin 'vim-airline/vim-airline-themes'
 scriptencoding utf-8
@@ -79,7 +93,7 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_symbols.whitespace = 'Ξ'
 
-"coloScheme
+" coloScheme
 Plugin 'morhetz/gruvbox'
 Plugin 'altercation/vim-colors-solarized' 
 Plugin 'nanotech/jellybeans.vim'
@@ -93,9 +107,9 @@ filetype plugin indent on    " required
 set undofile
 set undodir=~/.vim/undo
 
-" Indentation
+" indentation
 syntax on
-set noexpandtab
+set noexpandtab " stop tab from being spaces
 set tabstop=4
 set shiftwidth=4
 filetype plugin indent on
@@ -106,7 +120,7 @@ set nu
 set cursorline
 set hlsearch
 " change comment color
-"hi Comment ctermfg=241 
+"hi Comment ctermfg=241
 "hi LineNr cterm=italic ctermfg=233 ctermbg=245
 "hi Cursorline cterm=bold ctermbg=18
 "hi CursorlineNr cterm=bold ctermfg=red ctermbg=19
@@ -115,10 +129,11 @@ set hlsearch
 " https://magiclen.org/vimrc/,
 " https://www.reddit.com/r/vim/comments/4hoa6e/what_do_you_use_for_your_listchars/
 " http://www.fileformat.info/info/charset/UTF-8/list.htm
-set listchars=eol:↲,tab:<-,extends:»,precedes:«,trail:˴,nbsp:˴  "space:`,
+set listchars=eol:↲,tab:<-,extends:»,precedes:«,space:˴,nbsp:˴
 set list " list all concealed characters
+match ErrorMsg '\s\+$'
 set nowrap " warp the window or not
-" fold text by indentation. :help fold.txt 
+" fold text by indentation. :help fold.txt
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 "hi SpecialKey ctermfg=240 guifg=240
 "hi NonText ctermfg=240 guifg=240

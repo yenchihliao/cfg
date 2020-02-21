@@ -34,6 +34,8 @@ sudo apt install cmatrix
 ```bash
 sudo apt install tree
 sudo apt install silversearcher-ag
+sudo apt install cloc
+sudo apt install ctags
 ```
 
 ## Remote Connections <a id="rc"> </a>
