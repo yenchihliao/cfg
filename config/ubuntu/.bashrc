@@ -7,6 +7,7 @@ PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 ## Shell style
 ## Learned from https://www.gnu.org/software/bash/manual/bashref.html#Controlling-the-Prompt
 export PS1="\[\e[36m\]\u\[\e[m\]\[\e[33m\]+\j\[\e[m\]@\[\e[32m\][\w]\[\e[m\] "
+export TERM=xterm-256color
 alias ls='ls --color'
 alias ll='ls -l --color'
 alias la='ls -la --color'
