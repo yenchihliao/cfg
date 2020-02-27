@@ -40,6 +40,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'nathanaelkane/vim-indent-guides' "show indent defualt: \ig 
 Plugin 'tpope/vim-fugitive' "Git plugin
 Plugin 'preservim/nerdtree' "Tree
+" Thanks to: https://superuser.com/questions/184844/hide-certain-files-in-nerdtree
+let NERDTreeShowHidden=1
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
 Plugin 'ivalkeen/nerdtree-execute' "Execute command in NERDTree menu
 nnoremap \tr :NERDTreeToggle<CR>
 Plugin 'airblade/vim-gitgutter'
@@ -50,6 +53,8 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines=1
 let g:NERDCreateDefaultMappings=0
+" Thanks to: https://github.com/preservim/nerdcommenter/issues/278
+let g:NERDCustomDelimiters = {'python': { 'left': '#', 'right': '' }}
 nnoremap \cc :call NERDComment('n', 'toggle')<CR>
 vnoremap \cc :call NERDComment('x', 'toggle')<CR>
 nnoremap \ca :call NERDComment('n', 'append')<CR>
@@ -95,7 +100,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 " coloScheme
 Plugin 'morhetz/gruvbox'
-Plugin 'altercation/vim-colors-solarized' 
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'kien/rainbow_parentheses.vim' " add color to parentheses
 nnoremap \rb :RainbowParenthesesToggle<CR>
@@ -132,7 +137,7 @@ set hlsearch
 set listchars=eol:↲,tab:<-,extends:»,precedes:«,space:˴,nbsp:˴
 set list " list all concealed characters
 match ErrorMsg '\s\+$'
-set nowrap " warp the window or not
+set wrap " warp the window or not
 " fold text by indentation. :help fold.txt
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 "hi SpecialKey ctermfg=240 guifg=240

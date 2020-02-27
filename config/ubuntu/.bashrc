@@ -1,3 +1,5 @@
+# this command set your bash navigation key bindings to vi-style ones. Don't use this if you are not familiar this vim navigation.
+set -o vi
 #figlet "Welcome   back,   $USER"
 #eval $(thefuck --alias)
 export GOPATH=$HOME/go
@@ -13,5 +15,5 @@ alias goodJson='python3.6 -m json.tool' ## $cat [json].json | goodJson ## $goodJ
 alias findn='find . -name'
 alias os='cat /etc/os-release'
 alias tmuxat='tmux a -t'
-alias mydiff='diff -y --suppress-common-lines'
+alias diff='diff -y --suppress-common-lines'
 alias myip='curl ifconfig.co/json > ~/tmp && cat ~/tmp | goodJson && rm ~/tmp'
