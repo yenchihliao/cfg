@@ -5,9 +5,7 @@
 "	\tr for nerdtree
 "	\un for undo history
 "	\tag for tagbar
-"	^f/^g to open/close CtrlP
 "	\rb for rainbow-parentheses
-"	\ig for indenet-guildes
 "	NerdCommenter:
 "		\cc for comment toggle
 "		\ca for append comment
@@ -27,11 +25,12 @@
 "		jj for <ESC>
 "		oo for add newline in the next line.
 "		OO for add newline in the previous line.
+"		:vdiff to :vertical diffsplit
 "Frequently Used:
 "	:set paste/nopaste	# Stop autoindent when pasting
 "	:set wrap/nowrap	# Wrap long lines when exceeding screen size
 "	:set list/nolist	# Show hidden characters
-"	:echo &[variableName] # Show the value of [variableName]
+"	:echo &[variableName] # Show the value of [variableName], similar to set [variableName]?
 """""
 
 set nocompatible              " be iMproved, required
@@ -41,9 +40,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " miscellaneous
-Plugin 'nathanaelkane/vim-indent-guides' "show indent defualt: \ig
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
 Plugin 'tpope/vim-fugitive' "Git plugin
 Plugin 'preservim/nerdtree' "Tree
 " Thanks to: https://superuser.com/questions/184844/hide-certain-files-in-nerdtree
@@ -76,9 +72,10 @@ let g:mundo_auto_preview_delay = 0
 Plugin 'valloric/youcompleteme' " powerful auto complete
 Plugin 'majutsushi/tagbar' "show tags
 nnoremap \tag :TagbarToggle<CR>
-Plugin 'kien/ctrlp.vim' "searcher
-let g:ctrlp_map = '<c-f>' " replace original buffer forwad command
-let g:ctrlp_cmd = 'CtrlPMRU'
+" Use built-in :find to replace ctrlp
+" Plugin 'kien/ctrlp.vim' "searcher
+" let g:ctrlp_map = '<c-f>' " replace original buffer forwad command
+" let g:ctrlp_cmd = 'CtrlPMRU'
 
 " filetypes
 Plugin 'chrisbra/csv.vim' " csv
@@ -121,23 +118,45 @@ filetype plugin indent on    " required
 set undofile
 set undodir=~/.vim/undo
 
-" indentation
+" Indentation
 syntax on
 set noexpandtab " stop tab from being spaces
 set tabstop=4
 set shiftwidth=4
-filetype plugin indent on
 set autoindent
 
-" HighLight
+" Better looking
 set nu
 set cursorline
 set hlsearch
 " change comment color
-"hi Comment ctermfg=241
-"hi LineNr cterm=italic ctermfg=233 ctermbg=245
-"hi Cursorline cterm=bold ctermbg=18
-"hi CursorlineNr cterm=bold ctermfg=red ctermbg=19
+" hi Comment ctermfg=241
+" hi LineNr cterm=italic ctermfg=233 ctermbg=245
+" hi Cursorline cterm=bold ctermbg=18
+" hi CursorlineNr cterm=bold ctermfg=red ctermbg=19
+" nnoremap n n :set cursorcolumn<CR> :set nocursorcolumn<CR>
+" nnoremap N N :set cursorcolumn<CR> :set nocursorcolumn<CR>
+" nnoremap * * :set cursorcolumn<CR> :set nocursorcolumn<CR>
+" nnoremap # # :set cursorcolumn<CR> :set nocursorcolumn<CR>
+set showcmd
+
+" Better :find functionality
+set path+=**
+set wildmenu
+
+" Mappings
+inoremap jj <Esc>
+nnoremap oo o<Esc>k
+nnoremap OO O<Esc>j
+cnoremap vdiff vertical diffsplit
+
+" Clean registers
+" https://stackoverflow.com/questions/19430200/how-to-clear-vim-registers-effectively
+" let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+command! WipeReg let regs=split('abcdefghijklmnopqrstuvwxyz0123456789/-"', '\zs') | for r in regs | silent! call setreg(r, []) | endfor | unlet regs
+
+" reconize solidity
+au BufNewFile,BufRead *.sol setf solidity
 
 " Render style
 " https://magiclen.org/vimrc/,
@@ -151,18 +170,11 @@ set wrap " warp the window or not
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 "hi SpecialKey ctermfg=240 guifg=240
 "hi NonText ctermfg=240 guifg=240
-
-" Mappings
-inoremap jj <Esc>
-nnoremap oo o<Esc>k
-nnoremap OO O<Esc>j
-
-" reconize solidity
-au BufNewFile,BufRead *.sol setf solidity
-
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+" Show buffer number instead of its index
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='jellybeans'
 let g:solarized_termcolors=256
 let g:gruvbox_termcolors=256
