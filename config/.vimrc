@@ -72,6 +72,13 @@ let g:mundo_auto_preview_delay = 0
 Plugin 'valloric/youcompleteme' " powerful auto complete
 Plugin 'majutsushi/tagbar' "show tags
 nnoremap \tag :TagbarToggle<CR>
+Plugin 'takac/vim-hardtime'
+let g:hardtime_default_on = 1
+let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<BS>"]
+let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "<PageUp>", "<PageDown>", "<Del>"]
+let g:hardtime_timeout = 1500
+let g:hardtime_allow_different_key = 1
+let g:hardtime_maxcount = 2
 " Use built-in :find to replace ctrlp
 " Plugin 'kien/ctrlp.vim' "searcher
 " let g:ctrlp_map = '<c-f>' " replace original buffer forwad command
@@ -126,18 +133,15 @@ set shiftwidth=4
 set autoindent
 
 " Better looking
-set nu
+set number relativenumber
+augroup numberToggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 set cursorline
 set hlsearch
-" change comment color
-" hi Comment ctermfg=241
-" hi LineNr cterm=italic ctermfg=233 ctermbg=245
-" hi Cursorline cterm=bold ctermbg=18
-" hi CursorlineNr cterm=bold ctermfg=red ctermbg=19
-" nnoremap n n :set cursorcolumn<CR> :set nocursorcolumn<CR>
-" nnoremap N N :set cursorcolumn<CR> :set nocursorcolumn<CR>
-" nnoremap * * :set cursorcolumn<CR> :set nocursorcolumn<CR>
-" nnoremap # # :set cursorcolumn<CR> :set nocursorcolumn<CR>
+set incsearch
 set showcmd
 
 " Better :find functionality
@@ -168,8 +172,6 @@ match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
 set wrap " warp the window or not
 " fold text by indentation. :help fold.txt
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
-"hi SpecialKey ctermfg=240 guifg=240
-"hi NonText ctermfg=240 guifg=240
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
 " Show buffer number instead of its index
@@ -180,7 +182,7 @@ let g:solarized_termcolors=256
 let g:gruvbox_termcolors=256
 set background=dark
 colorscheme gruvbox
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
