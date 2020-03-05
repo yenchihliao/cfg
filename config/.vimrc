@@ -140,9 +140,13 @@ augroup numberToggle
 	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 set cursorline
+set showcmd
+
+" Search
 set hlsearch
 set incsearch
-set showcmd
+set ignorecase
+set smartcase
 
 " Better :find functionality
 set path+=**
