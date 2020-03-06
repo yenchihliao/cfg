@@ -6,35 +6,65 @@
 "	jj for <ESC>
 "	oo for add newline in the next line.
 "	OO for add newline in the previous line.
+"	:vdiff to :vertical diffsplit
 "Frequently Used:
 "	:set paste/nopaste	# Stop autoindent when pasting
 "	:set wrap/nowrap	# Wrap long lines when exceeding screen size
 "	:set list/nolist	# Show hidden characters
-"	:echo &[variableName] # Show the value of [variableName]
+"	:echo &[variableName] # Show the value of [variableName], similar to set [variableName]?
 """""
 
 " store undo history
 set undofile
 set undodir=~/.vim/undo
 
-" indentation
+" Indentation
 syntax on
 set noexpandtab " stop tab from being spaces
 set tabstop=4
 set shiftwidth=4
-filetype plugin indent on
 set autoindent
 
-" HighLight
-set t_Co=256
-set nu
+" Better looking
+set number relativenumber
+augroup numberToggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 set cursorline
+set showcmd
+
+" Search
 set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Better :find functionality
+set path+=**
+set wildmenu
+
 " change comment color
 hi Comment ctermfg=243
 hi LineNr cterm=italic ctermfg=233 ctermbg=245
 hi Cursorline cterm=bold ctermbg=240
 hi CursorlineNr cterm=bold ctermfg=red ctermbg=8
+
+
+" Mappings
+inoremap jj <Esc>
+nnoremap oo o<Esc>k
+nnoremap OO O<Esc>j
+cnoremap vdiff vertical diffsplit
+
+" Clean registers
+" https://stackoverflow.com/questions/19430200/how-to-clear-vim-registers-effectively
+" let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+command! WipeReg let regs=split('abcdefghijklmnopqrstuvwxyz0123456789/-"', '\zs') | for r in regs | silent! call setreg(r, []) | endfor | unlet regs
+
+" reconize solidity
+au BufNewFile,BufRead *.sol setf solidity
 
 " Render style
 " https://magiclen.org/vimrc/,
@@ -42,16 +72,8 @@ hi CursorlineNr cterm=bold ctermfg=red ctermbg=8
 " http://www.fileformat.info/info/charset/UTF-8/list.htm
 set listchars=eol:↲,tab:<-,extends:»,precedes:«,space:˴,nbsp:˴
 set list " list all concealed characters
-match ErrorMsg '\s\+$'
-set nowrap " warp the window or not
+match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
+set wrap " warp the window or not
 " fold text by indentation. :help fold.txt
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
-
-" Mappings
-inoremap jj <Esc>
-nnoremap oo o<Esc>k
-nnoremap OO O<Esc>j
-
-" reconize solidity
-au BufNewFile,BufRead *.sol setf solidity
-
+set t_Co=256
