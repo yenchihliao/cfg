@@ -176,6 +176,11 @@ match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
 set wrap " warp the window or not
 " fold text by indentation. :help fold.txt
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
+
+" auto save and load folds
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
 " Show buffer number instead of its index
