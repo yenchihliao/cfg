@@ -143,6 +143,9 @@ set cursorline
 set showcmd
 
 " Search
+nnoremap <C-L> :nohls<cr><C-L>
+nnoremap n nzz
+nnoremap N Nzz
 set hlsearch
 set incsearch
 set ignorecase
