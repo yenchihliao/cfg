@@ -178,8 +178,9 @@ set wrap " warp the window or not
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 
 " auto save and load folds
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+" thanks to: https://ubuntuforums.org/showthread.php?t=1639591
+au BufWinLeave ?* mkview 1
+au BufWinEnter ?* silent loadview 1
 
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
