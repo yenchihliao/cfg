@@ -20,12 +20,15 @@
 "	Pymode:
 "		\r to run python code
 "		\dc to open documentation
-"	SelfDefined:
-"		\fi to fold indent
-"		jj for <ESC>
-"		oo for add newline in the next line.
-"		OO for add newline in the previous line.
-"		:vdiff to :vertical diffsplit
+" (SelfDefined)
+	" \fi to fold indent
+	" jj for <ESC>
+	" oo for add newline in the next line.
+	" OO for add newline in the previous line.
+	" :vdiff to :vertical diffsplit
+	" ^l original effect + clear search highlight
+	" \+s show space
+	" \-s don't show space
 "Frequently Used:
 "	:set paste/nopaste	# Stop autoindent when pasting
 "	:set wrap/nowrap	# Wrap long lines when exceeding screen size
@@ -84,16 +87,16 @@ let g:hardtime_maxcount = 2
 " let g:ctrlp_map = '<c-f>' " replace original buffer forwad command
 " let g:ctrlp_cmd = 'CtrlPMRU'
 
-" filetypes
-Plugin 'chrisbra/csv.vim' " csv
-" :NewDelimiter
-" :ArrangeColumn
-Plugin 'klen/python-mode' " python
-let g:pymode_breakponit = 0
-let g:pymode_lint = 0
-let g:pymode_rope_completion = 0
-let g:pymode_doc_bind = '<leader>dc'
-Plugin 'nelstrom/vim-markdown-folding' "markdown
+" filetypes: uncomment on demand
+" Plugin 'chrisbra/csv.vim' " csv
+" " :NewDelimiter
+" " :ArrangeColumn
+" Plugin 'klen/python-mode' " python
+" let g:pymode_breakponit = 0
+" let g:pymode_lint = 0
+" let g:pymode_rope_completion = 0
+" let g:pymode_doc_bind = '<leader>dc'
+" Plugin 'nelstrom/vim-markdown-folding' "markdown
 
 " statusLine
 Plugin 'vim-airline/vim-airline'
@@ -173,7 +176,9 @@ au BufNewFile,BufRead *.sol setf solidity
 " https://magiclen.org/vimrc/,
 " https://www.reddit.com/r/vim/comments/4hoa6e/what_do_you_use_for_your_listchars/
 " http://www.fileformat.info/info/charset/UTF-8/list.htm
-set listchars=eol:↲,tab:<-,extends:»,precedes:«,space:˴,nbsp:˴
+set listchars=eol:↲,tab:<-,extends:»,precedes:«
+nnoremap \+s :set listchars+=space:˴,nbsp:˴<CR>
+nnoremap \-s :set listchars=eol:↲,tab:<-,extends:»,precedes:«<CR>
 set list " list all concealed characters
 match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
 set wrap " warp the window or not

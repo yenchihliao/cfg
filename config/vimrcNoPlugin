@@ -2,11 +2,14 @@
 "Remap of Plugin optiosns should be placed within vundle according to :help startup
 """""
 " Mappings:
-"	\fi to fold indent
-"	jj for <ESC>
-"	oo for add newline in the next line.
-"	OO for add newline in the previous line.
-"	:vdiff to :vertical diffsplit
+	" \fi to fold indent
+	" jj for <ESC>
+	" oo for add newline in the next line.
+	" OO for add newline in the previous line.
+	" :vdiff to :vertical diffsplit
+	" ^l original effect + clear search highlight
+	" \+s show space
+	" \-s don't show space
 "Frequently Used:
 "	:set paste/nopaste	# Stop autoindent when pasting
 "	:set wrap/nowrap	# Wrap long lines when exceeding screen size
@@ -36,6 +39,9 @@ set cursorline
 set showcmd
 
 " Search
+nnoremap <C-L> :nohls<cr><C-L>
+nnoremap n nzz
+nnoremap N Nzz
 set hlsearch
 set incsearch
 set ignorecase
@@ -71,9 +77,17 @@ au BufNewFile,BufRead *.sol setf solidity
 " https://www.reddit.com/r/vim/comments/4hoa6e/what_do_you_use_for_your_listchars/
 " http://www.fileformat.info/info/charset/UTF-8/list.htm
 set listchars=eol:↲,tab:<-,extends:»,precedes:«,space:˴,nbsp:˴
+nnoremap \+s :set listchars+=space:˴,nbsp:˴<CR>
+nnoremap \-s :set listchars=eol:↲,tab:<-,extends:»,precedes:«<CR>
 set list " list all concealed characters
 match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
 set wrap " warp the window or not
 " fold text by indentation. :help fold.txt
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
+
+" auto save and load folds
+" thanks to: https://ubuntuforums.org/showthread.php?t=1639591
+au BufWinLeave ?* mkview 1
+au BufWinEnter ?* silent loadview 1
+
 set t_Co=256
