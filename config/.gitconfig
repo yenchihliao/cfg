@@ -2,7 +2,7 @@
 	email = yen.yenchih.liao@gmail.com
 	name = yenchihliao
 [alias]
-	a = add
 	ss = status -s
 	c = commit -m
 	co = checkout
+	b = branch -a
