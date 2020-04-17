@@ -149,6 +149,8 @@ set showcmd
 nnoremap <C-L> :nohls<cr><C-L>
 nnoremap n nzz
 nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
 set hlsearch
 set incsearch
 set ignorecase
@@ -187,8 +189,11 @@ nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 
 " auto save and load folds
 " thanks to: https://ubuntuforums.org/showthread.php?t=1639591
-au BufWinLeave ?* mkview 1
-au BufWinEnter ?* silent loadview 1
+" au BufWinLeave ?* mkview 1
+" au BufWinEnter ?* silent loadview 1
+
+" find the tag file
+set tags=tags;
 
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
