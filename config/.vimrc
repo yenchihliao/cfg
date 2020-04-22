@@ -22,6 +22,7 @@
 "		\dc to open documentation
 " (SelfDefined)
 	" \fi to fold indent
+	" @z to fold betweeen next {}
 	" jj for <ESC>
 	" oo for add newline in the next line.
 	" OO for add newline in the previous line.
@@ -186,6 +187,8 @@ match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
 set wrap " warp the window or not
 " fold text by indentation. :help fold.txt
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
+" fold between {}
+:let @z="/{\<CR>V%zfzz"
 
 " auto save and load folds
 " thanks to: https://ubuntuforums.org/showthread.php?t=1639591
