@@ -1,4 +1,3 @@
-"@yen: Age of Pulgins @Jan23, 2020
 "Remap of Plugin optiosns should be placed within vundle according to :help startup
 """""
 " Mappings:
@@ -76,13 +75,14 @@ let g:mundo_auto_preview_delay = 0
 Plugin 'valloric/youcompleteme' " powerful auto complete
 Plugin 'majutsushi/tagbar' "show tags
 nnoremap \tag :TagbarToggle<CR>
-Plugin 'takac/vim-hardtime'
-let g:hardtime_default_on = 1
-let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<BS>"]
-let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "<PageUp>", "<PageDown>", "<Del>"]
-let g:hardtime_timeout = 1500
-let g:hardtime_allow_different_key = 1
-let g:hardtime_maxcount = 2
+" @yen: uncomment on demand
+" Plugin 'takac/vim-hardtime'
+" let g:hardtime_default_on = 1
+" let g:list_of_normal_keys = ["h", "j", "k", "l", "-", "+", "<BS>"]
+" let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>", "<PageUp>", "<PageDown>", "<Del>"]
+" let g:hardtime_timeout = 1500
+" let g:hardtime_allow_different_key = 1
+" let g:hardtime_maxcount = 2
 " Use built-in :find to replace ctrlp
 " Plugin 'kien/ctrlp.vim' "searcher
 " let g:ctrlp_map = '<c-f>' " replace original buffer forwad command
@@ -136,16 +136,6 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 
-" Better looking
-set number relativenumber
-augroup numberToggle
-	autocmd!
-	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-set cursorline
-set showcmd
-
 " Search
 nnoremap <C-L> :nohls<cr><C-L>
 nnoremap n nzz
@@ -198,6 +188,7 @@ nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 " find the tag file
 set tags=tags;
 
+" Better looking
 set t_Co=256
 let g:airline#extensions#tabline#enabled = 1
 " Show buffer number instead of its index
@@ -208,6 +199,20 @@ let g:solarized_termcolors=256
 let g:gruvbox_termcolors=256
 set background=dark
 colorscheme gruvbox
+set number relativenumber
+augroup numberToggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+set cursorline
+set showcmd
+highlight LineNr ctermbg=234
+highlight CursorLineNr ctermbg=235
+highlight CursorLine ctermbg=235
+" " Fix background color inconsistency
+" " https://stackoverflow.com/questions/4325682/vim-colorschemes-not-changing-background-color
+highlight Normal ctermbg=NONE
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
