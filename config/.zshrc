@@ -77,7 +77,6 @@ bindkey "^N" down-line-or-search
 #    *Microsoft*) unsetopt BG_NICE ;;
 # esac
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -125,3 +124,6 @@ alias myip='curl ifconfig.co/json > ~/tmp && cat ~/tmp | goodJson && rm ~/tmp'
 alias python='python3.6'
 alias pip='pip3.6'
 alias deyi="ssh -i ~/.ssh/id_rsa2 -p 50222 caideyi@140.112.29.207"
+
+# Always keep this line in the end
+source $ZSH/oh-my-zsh.sh
