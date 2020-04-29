@@ -30,9 +30,9 @@
 	" \+s show space
 	" \-s don't show space
 "Frequently Used:
-"	:set paste/nopaste	# Stop autoindent when pasting
-"	:set wrap/nowrap	# Wrap long lines when exceeding screen size
-"	:set list/nolist	# Show hidden characters
+"	:set paste!	# Stop autoindent when pasting
+"	:set wrap!	# Wrap long lines when exceeding screen size
+"	:set list!	# Show hidden characters
 "	:echo &[variableName] # Show the value of [variableName], similar to set [variableName]?
 """""
 
@@ -75,6 +75,10 @@ let g:mundo_auto_preview_delay = 0
 Plugin 'valloric/youcompleteme' " powerful auto complete
 Plugin 'majutsushi/tagbar' "show tags
 nnoremap \tag :TagbarToggle<CR>
+let g:tagbar_sort = 0
+let g:tagbar_show_linenumbers = -1
+let g:tagbar_width = 50
+let g:tagbar_foldlevel = 2
 " @yen: uncomment on demand
 " Plugin 'takac/vim-hardtime'
 " let g:hardtime_default_on = 1
