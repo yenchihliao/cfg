@@ -54,10 +54,11 @@ set path+=**
 set wildmenu
 
 " change comment color
-hi Comment ctermfg=243
-highlight LineNr ctermbg=234
+" highlight LineNr ctermbg=234
+colorscheme desert " Change colorscheme
+hi Comment ctermfg=243 " force comment color to be grey
 highlight CursorLineNr ctermbg=235
-highlight CursorLine ctermbg=235
+highlight CursorLine ctermbg=235 cterm=bold " change cursorline style from a line to highlight
 highlight Normal ctermbg=NONE
 
 
