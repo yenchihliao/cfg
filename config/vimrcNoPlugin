@@ -11,9 +11,10 @@
 	" \+s show space
 	" \-s don't show space
 "Frequently Used:
-"	:set paste/nopaste	# Stop autoindent when pasting
-"	:set wrap/nowrap	# Wrap long lines when exceeding screen size
-"	:set list/nolist	# Show hidden characters
+"	:set paste!	# Stop autoindent when pasting
+"	:set wrap!	# Wrap long lines when exceeding screen size
+"	:set list!	# Show hidden characters
+"	:f			# Show full path of current file name
 "	:echo &[variableName] # Show the value of [variableName], similar to set [variableName]?
 """""
 
@@ -81,15 +82,19 @@ au BufNewFile,BufRead *.sol setf solidity
 " https://www.reddit.com/r/vim/comments/4hoa6e/what_do_you_use_for_your_listchars/
 " http://www.fileformat.info/info/charset/UTF-8/list.htm
 set listchars=eol:↲,tab:<-,extends:»,precedes:«
-nnoremap \+s :set listchars+=space:˴,nbsp:˴<CR>
+nnoremap \+s :set listchars+=space:·,nbsp:·<CR>
 nnoremap \-s :set listchars=eol:↲,tab:<-,extends:»,precedes:«<CR>
 set list " list all concealed characters
 match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
 set wrap " warp the window or not
 " fold text by indentation. :help fold.txt
+set foldnestmax=4 " fold at most two level
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 " fold between {}
 :let @z="/{\<CR>V%zfzz"
+
+" parse json file(apt install jq)
+nnoremap \jq :%! jq<CR>
 
 " auto save and load folds
 " thanks to: https://ubuntuforums.org/showthread.php?t=1639591

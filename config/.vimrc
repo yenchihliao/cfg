@@ -1,10 +1,11 @@
-"Remap of Plugin optiosns should be placed within vundle according to :help startup
+" Remap of Plugin optiosns should be placed within vundle according to :help startup
 """""
 " Mappings:
 "	\tr for nerdtree
 "	\un for undo history
 "	\tag for tagbar
 "	\rb for rainbow-parentheses
+"	\jq for parsing json files
 "	NerdCommenter:
 "		\cc for comment toggle
 "		\ca for append comment
@@ -33,6 +34,7 @@
 "	:set paste!	# Stop autoindent when pasting
 "	:set wrap!	# Wrap long lines when exceeding screen size
 "	:set list!	# Show hidden characters
+"	:f			# Show full path of current file name
 "	:echo &[variableName] # Show the value of [variableName], similar to set [variableName]?
 """""
 
@@ -50,6 +52,8 @@ let NERDTreeShowHidden=1
 set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
 Plugin 'ivalkeen/nerdtree-execute' "Execute command in NERDTree menu
 nnoremap \tr :NERDTreeToggle<CR>
+Plugin 'tomlion/vim-solidity' " syntax for solidity
+Plugin 'AnsiEsc.vim' " syntax for Ansi escape code(i.g. script output)
 Plugin 'airblade/vim-gitgutter'
 nnoremap \ggf :GitGutterFold<CR>
 nnoremap \gg :GitGutterToggle<CR>
@@ -140,12 +144,13 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 
-" Search
+" Jumping(searching and tags)
 nnoremap <C-L> :nohls<cr><C-L>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
 nnoremap # #zz
+nnoremap <C-]> <C-]>zz
 set hlsearch
 set incsearch
 set ignorecase
@@ -174,15 +179,19 @@ au BufNewFile,BufRead *.sol setf solidity
 " https://www.reddit.com/r/vim/comments/4hoa6e/what_do_you_use_for_your_listchars/
 " http://www.fileformat.info/info/charset/UTF-8/list.htm
 set listchars=eol:↲,tab:<-,extends:»,precedes:«
-nnoremap \+s :set listchars+=space:˴,nbsp:˴<CR>
+nnoremap \+s :set listchars+=space:·,nbsp:·<CR>
 nnoremap \-s :set listchars=eol:↲,tab:<-,extends:»,precedes:«<CR>
 set list " list all concealed characters
 match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
 set wrap " warp the window or not
 " fold text by indentation. :help fold.txt
+set foldnestmax=4 " fold at most two level
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 " fold between {}
 :let @z="/{\<CR>V%zfzz"
+
+" parse json file(apt install jq)
+nnoremap \jq :%! jq<CR>
 
 " auto save and load folds
 " thanks to: https://ubuntuforums.org/showthread.php?t=1639591
@@ -191,6 +200,17 @@ nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 
 " find the tag file
 set tags=tags;
+" tags for solidity
+let g:tagbar_type_solidity = {
+    \ 'ctagstype': 'solidity',
+    \ 'kinds' : [
+        \ 'c:contracts',
+        \ 'e:events',
+        \ 'f:functions',
+        \ 'm:mappings',
+        \ 'v:varialbes',
+    \ ]
+\ }
 
 " Better looking
 set t_Co=256

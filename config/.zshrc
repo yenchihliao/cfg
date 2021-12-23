@@ -113,17 +113,17 @@ PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 ## Learned from https://www.gnu.org/software/bash/manual/bashref.html#Controlling-the-Prompt
 export TERM=xterm-256color
 alias ptt='ssh bbsu@ptt.cc'
-alias goodJson='python3.6 -m json.tool' ## $cat [json].json | goodJson ## $goodJson [json].json
+# alias goodJson='python3 -m json.tool' ## $cat [json].json | goodJson ## $goodJson [json].json
 alias findn='find . -name'
 alias os='cat /etc/os-release'
 alias tmuxat='tmux a -t'
-alias diff='diff -y --suppress-common-lines'
+alias mydiff='diff -y --suppress-common-lines'
 alias myip='curl ifconfig.co/json > ~/tmp && cat ~/tmp | goodJson && rm ~/tmp'
 
 ## Only for this computer
-alias python='python3.6'
-alias pip='pip3.6'
-alias deyi="ssh -i ~/.ssh/id_rsa2 -p 50222 caideyi@140.112.29.207"
+alias python='python3'
+alias pip='pip3'
+alias open='xdg-open' # for linux
 
 # Always keep this line in the end
 source $ZSH/oh-my-zsh.sh
