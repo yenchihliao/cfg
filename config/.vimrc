@@ -30,11 +30,13 @@
 	" ^l original effect + clear search highlight
 	" \+s show space
 	" \-s don't show space
+	" \cp copy mode
+	" \pc undo copy mode
 "Frequently Used:
 "	:set paste!	# Stop autoindent when pasting
 "	:set wrap!	# Wrap long lines when exceeding screen size
 "	:set list!	# Show hidden characters
-"	:f			# Show full path of current file name
+"	1^G			# Show full path of current file name
 "	:echo &[variableName] # Show the value of [variableName], similar to set [variableName]?
 """""
 
@@ -184,8 +186,10 @@ nnoremap \-s :set listchars=eol:↲,tab:<-,extends:»,precedes:«<CR>
 set list " list all concealed characters
 match ErrorMsg '\s\+$' "mark trailing space as ErrMsg
 set wrap " warp the window or not
+nnoremap \cp :set nolist<CR>:set norelativenumber<CR>:set nonu<CR>
+nnoremap \pc :set list<CR>:set relativenumber<CR>:set nu<CR>
 " fold text by indentation. :help fold.txt
-set foldnestmax=4 " fold at most two level
+set foldnestmax=5 " max folding level
 nnoremap \fi :set foldmethod=indent<CR>:set foldmethod=manual<CR>
 " fold between {}
 :let @z="/{\<CR>V%zfzz"
