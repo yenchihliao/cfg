@@ -1,12 +1,9 @@
 # Configuration Files
-Search for @yen comments, if any, to modify these configuration files on demand.
-* vim
-* bash
-* zsh
-* tmx
+Search for @yen comments, if any, to modify configuration files on demand.
+
 ## vim
 * vimrcNoPlugin: `.vimrc` file without further installation for Plugins.
-* .vimrc:  
+* .vimrc:
 	* Install Vundle.
 	```bash
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim

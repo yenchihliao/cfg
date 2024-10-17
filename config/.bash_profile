@@ -1,3 +1,4 @@
+# Bash configuration for Mac
 # this command set your bash navigation key bindings to vi-style ones. Don't use this if you are not familiar this vim navigation.
 set -o vi
 #figlet "Welcome   back,   $USER"
@@ -17,5 +18,4 @@ alias os='cat /etc/os-release'
 alias tmuxat='tmux a -t'
 alias diff='diff -y --suppress-common-lines'
 alias myip='curl ifconfig.co/json > ~/tmp && cat ~/tmp | goodJson && rm ~/tmp'
-alias solc='/usr/local/Cellar/solidity@5/0.5.15/bin/solc'
 ## solc = /usr/local/Cellar/solidity/0.6.0/bin/solc

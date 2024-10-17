@@ -1,0 +1,55 @@
+// VSCode
+// Plugins:
+//  Copy file name: Viktor Nemes
+//  GitLens
+//  Json
+//  Vim: vscodevim
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    // VIM
+    "vim.foldfix": true, // disabled auto-expand tab
+    "vim.useSystemClipboard": true, // copy and paste using system clipboard
+    "vim.normalModeKeyBindingsNonRecursive": [ // fix for ctrl-u and ctrl-d
+        {
+            "before": ["<C-u>"],
+            "after": ["2", "0", "k"],
+        },
+        {
+            "before": ["<C-d>"],
+            "after": ["2", "0", "j"],
+        },
+        {
+            "before": ["<C-w>", "|"],
+            "commands": ["workbench.action.toggleEditorWidths"]
+        }
+    ],
+
+    // Others
+    "files.eol": "\n",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.tabCompletion": "on",
+    "editor.wordWrap": "on",
+    "editor.lineNumbers": "relative",
+    "editor.quickSuggestions": {
+        "comments": "inline",
+        "strings": "inline"
+    },
+    "editor.renderWhitespace": "all", // render spaces
+    "files.trimTrailingWhitespace": true, // auto-trim
+    "workbench.editor.empty.hint": "hidden",
+    "editor.minimap.autohide": true,
+
+    // Python format
+    "isort.check": true,
+    "isort.args":["--profile", "black",],
+    "python.analysis.indexing": true,
+    "python.analysis.autoImportCompletions": true,
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "always"
+        },
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+    "github.copilot.editor.enableAutoCompletions": true,
+}

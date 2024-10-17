@@ -1,8 +1,27 @@
 [user]
-	email = yen.yenchih.liao@gmail.com
-	name = yenchihliao
+    email = yen.yenchih.liao@gmail.com
+    name = yenchihliao
 [alias]
-	ss = status -s
-	c = commit -m
-	co = checkout
-	b = branch -a
+    b = branch
+    co = checkout
+    cm = commit -m
+    ca = commit --amend
+    cp = cherry-pick
+    cpn = cherry-pick --no-commit
+    cbn = symbolic-ref --short HEAD # current branch name
+    d = diff
+    dh = diff HEAD^
+    dc = diff --cached
+    dw = diff --word-diff
+    dn = diff --name-only
+    fo = fetch origin
+    l = log --graph --oneline
+    m = merge
+    ms = merge --squash
+    pl = pull
+    ps = push
+    pp = push --set-upstream origin HEAD
+    r = rebase
+    ss = status -s
+    sh = stash
+    clone-s = clone --depth 1

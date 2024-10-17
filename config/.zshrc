@@ -63,15 +63,31 @@ ZSH_THEME="wezm"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# FZF
+export FZF_BASE="/opt/homebrew/bin/fzf"
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(z zsh-autosuggestions zsh-syntax-highlighting command-not-found themes)
-bindkey '^y' autosuggest-accept
+plugins=(
+    z # Faster and smarter cd command
+    zsh-autosuggestions # searches command history
+    zsh-syntax-highlighting
+    command-not-found
+    themes
+    zsh-vi-mode # Use vim key bindings
+    fzf
+)
+
+# Overwrite vi-mode ^r with fzf ^r
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
+bindkey "^y" autosuggest-accept
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
+
 # yen: for WSL
 # case $(uname -a) in
 #    *Microsoft*) unsetopt BG_NICE ;;
@@ -103,10 +119,6 @@ bindkey "^N" down-line-or-search
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# this command set your bash navigation key bindings to vi-style ones. Don't use this if you are not familiar this vim navigation.
-set -o vi
-#figlet "Welcome   back,   $USER"
-#eval $(thefuck --alias)
 export GOPATH=$HOME/go
 PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 ## Shell style
@@ -119,11 +131,34 @@ alias os='cat /etc/os-release'
 alias tmuxat='tmux a -t'
 alias mydiff='diff -y --suppress-common-lines'
 alias myip='curl ifconfig.co/json > ~/tmp && cat ~/tmp | goodJson && rm ~/tmp'
+alias poe='poetry'
+alias g='git'
+alias gb='gh browse -b $(git symbolic-ref --short HEAD)' # Open current git branch on browser
+alias bat='bat -p' # bat with plain text
+alias cloc='cloc --by-file'
 
-## Only for this computer
-alias python='python3'
-alias pip='pip3'
-alias open='xdg-open' # for linux
+# alias open='xdg-open' # for linux
 
+# brew install tree
+# brew install tmux
+# brew install xdg-open            # open command on Mac
+# brew install wget
+# brew install cloc                # src code analyzer
+# brew install yq                  # better jq
+# brew install poetry              # install with pip if specific version is needed
+# brew install python@3.9
+# brew install pip
+# brew install mysql
+# brew install gh                  # github!
+# brew install redis
+# brew install fzf
+# brew install helm
+# brew install kubectl
+# brew install bat                 # cat with wings!
+# brew install devtoys
+# brew install tig                 # git versions
+# brew install fzf
+# brew install ripgrep             # better grep
+# brew install fd                  # better find
 # Always keep this line in the end
 source $ZSH/oh-my-zsh.sh
