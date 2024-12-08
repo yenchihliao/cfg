@@ -124,18 +124,21 @@ PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 ## Shell style
 ## Learned from https://www.gnu.org/software/bash/manual/bashref.html#Controlling-the-Prompt
 export TERM=xterm-256color
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 alias ptt='ssh bbsu@ptt.cc'
 # alias goodJson='python3 -m json.tool' ## $cat [json].json | goodJson ## $goodJson [json].json
-alias findn='find . -name'
+alias fd ='fd -H' # search with hidden file enabled # add -I to also search for gitignored files
 alias os='cat /etc/os-release'
 alias tmuxat='tmux a -t'
 alias mydiff='diff -y --suppress-common-lines'
 alias myip='curl ifconfig.co/json > ~/tmp && cat ~/tmp | goodJson && rm ~/tmp'
-alias poe='poetry'
 alias g='git'
 alias gb='gh browse -b $(git symbolic-ref --short HEAD)' # Open current git branch on browser
 alias bat='bat -p' # bat with plain text
-alias cloc='cloc --by-file'
+alias cbn='git symbolic-ref --short HEAD | tee >(pbcopy)' # current branch name
+alias cat='bat'
+alias c='code .'
+alias s='source .env'
 
 # alias open='xdg-open' # for linux
 
@@ -143,9 +146,9 @@ alias cloc='cloc --by-file'
 # brew install tmux
 # brew install xdg-open            # open command on Mac
 # brew install wget
-# brew install cloc                # src code analyzer
+# brew install scc                 # src code analyzer
 # brew install yq                  # better jq
-# brew install poetry              # install with pip if specific version is needed
+# brew install uv                  # install with pip if specific version is needed # faster poetry
 # brew install python@3.9
 # brew install pip
 # brew install mysql
@@ -160,5 +163,9 @@ alias cloc='cloc --by-file'
 # brew install fzf
 # brew install ripgrep             # better grep
 # brew install fd                  # better find
+# brew install htop
+# brew install genact              # pretend to be busy
+#
+# date +%v                         # week count
 # Always keep this line in the end
 source $ZSH/oh-my-zsh.sh

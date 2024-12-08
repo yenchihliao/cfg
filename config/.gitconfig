@@ -4,6 +4,7 @@
 [alias]
     b = branch
     co = checkout
+    com = checkout main
     cm = commit -m
     ca = commit --amend
     cp = cherry-pick
@@ -11,6 +12,9 @@
     cbn = symbolic-ref --short HEAD # current branch name
     d = diff
     dh = diff HEAD^
+    dhn = diff HEAD^ --name-only
+    dm = diff main
+    dmn = diff main --name-only
     dc = diff --cached
     dw = diff --word-diff
     dn = diff --name-only
@@ -22,6 +26,11 @@
     ps = push
     pp = push --set-upstream origin HEAD
     r = rebase
+    rc = rebase --continue
     ss = status -s
     sh = stash
+    shp = stash show -p
+    shn = stash show --name-only
+    shl = stash list
     clone-s = clone --depth 1
+    rv = remote -v
