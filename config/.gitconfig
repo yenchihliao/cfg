@@ -4,6 +4,7 @@
 [alias]
     b = branch
     co = checkout
+    cob = checkout -b
     com = checkout main
     cm = commit -m
     ca = commit --amend
@@ -11,20 +12,21 @@
     cpn = cherry-pick --no-commit
     cbn = symbolic-ref --short HEAD # current branch name
     d = diff
-    dh = diff HEAD^
-    dhn = diff HEAD^ --name-only
+    dh = diff HEAD^ HEAD
+    dhn = diff HEAD^ HEAD --name-only
     dm = diff main
     dmn = diff main --name-only
     dc = diff --cached
     dw = diff --word-diff
+    dww = diff --word-diff-regex=.
     dn = diff --name-only
     fo = fetch origin
     l = log --graph --oneline
-    m = merge
-    ms = merge --squash
     pl = pull
     ps = push
     pp = push --set-upstream origin HEAD
+    m = merge
+    ms = merge --squash
     r = rebase
     rc = rebase --continue
     ss = status -s
@@ -32,5 +34,7 @@
     shp = stash show -p
     shn = stash show --name-only
     shl = stash list
-    clone-s = clone --depth 1
+    shallow = clone --depth 1 # shallow clone
     rv = remote -v
+    ci = check-ignore -v # Usage: `g ci {git ignored file}`. Show why a file is ignored
+    jump = "!f() { git fetch --depth=1 && read -p 'Reset to latest commit? (y/N) ' ans && [ \"$ans\" = \"y\" ] && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD); }; f"
