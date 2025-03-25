@@ -79,6 +79,7 @@ plugins=(
     themes
     zsh-vi-mode # Use vim key bindings
     fzf
+    timer
 )
 
 # Overwrite vi-mode ^r with fzf ^r
@@ -87,6 +88,26 @@ zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 bindkey "^y" autosuggest-accept
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
+
+
+export FZF_CTRL_T_COMMAND='fd --type f'
+
+# Set no sort (chronological order) by default, ctrl-r again to sort (alphabetical order)
+export FZF_CTRL_R_OPTS='
+  --no-sort
+  --height 80%
+  --reverse
+  --preview "echo {}"
+  --preview-window=up:5:wrap
+  --delimiter=" "
+  '
+
+# Preview file content using bat
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --height 80%
+  --preview 'tree -C -L 1 {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # yen: for WSL
 # case $(uname -a) in
@@ -127,18 +148,31 @@ export TERM=xterm-256color
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 alias ptt='ssh bbsu@ptt.cc'
 # alias goodJson='python3 -m json.tool' ## $cat [json].json | goodJson ## $goodJson [json].json
-alias fd ='fd -H' # search with hidden file enabled # add -I to also search for gitignored files
+alias fda='fd -HI' # find all: fd with hidden files (H) and gitignored files (I)
 alias os='cat /etc/os-release'
 alias tmuxat='tmux a -t'
 alias mydiff='diff -y --suppress-common-lines'
-alias myip='curl ifconfig.co/json > ~/tmp && cat ~/tmp | goodJson && rm ~/tmp'
+alias myip='curl -s ifconfig.co/json | yq .ip'
 alias g='git'
 alias gb='gh browse -b $(git symbolic-ref --short HEAD)' # Open current git branch on browser
 alias bat='bat -p' # bat with plain text
 alias cbn='git symbolic-ref --short HEAD | tee >(pbcopy)' # current branch name
 alias cat='bat'
-alias c='code .'
+alias c='cursor .'
+alias c..='cursor ..'
 alias s='source .env'
+alias pwd='pwd | tee >(pbcopy)'
+alias activate='source .venv/bin/activate'
+alias yqo='yq -I=0' # indent=0 for one-line output
+alias lss='less -S'
+alias rg='rg -i' # ignore-case(-i), in contrast to case-sensitive(default/-s) or smart-case(-S)
+get-keys() { # show .env files without revealing secrets
+    file=$1
+    if [[ -z $1 ]]; then
+        file=".env"
+    fi
+    sed -E 's/(=.*)/=****/' ${file}
+}
 
 # alias open='xdg-open' # for linux
 
